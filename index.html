@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>リーグ戦対戦表2ページ編</title>
+    <title>リーグ戦対戦表</title>
     <style>
         body { font-family: sans-serif; padding: 8px; margin: 0; background-color: #fff; color: #333; }
 
@@ -50,11 +50,7 @@
 
             .match-num { color: #666 !important; font-size: 7px !important; top: 4px; left: 4px; }
 
-            .page table th {
-                background-color: #eee !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+            .page table th { background-color: #eee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
             .page table {
                 margin: 0;
@@ -64,6 +60,7 @@
                 border-top: 1px solid #333;
             }
 
+            /* 共通のセル設定（ここはそのまま） */
             .page table th,
             .page table td {
                 border: 0 !important;
@@ -72,8 +69,29 @@
                 height: 45px !important;
             }
 
+            /* --- ここから追記する内容 --- */
+            /* 9人・10人の時だけ高さを 35px に縮める */
+            .page[data-n="9"] table th,
+            .page[data-n="9"] table td,
+            .page[data-n="10"] table th,
+            .page[data-n="10"] table td {
+                height: 35px !important;
+            }
+
+            /* 共通の高さ（デフォルト） */
             .match-list-column table th,
-            .match-list-column table td { height: 45px !important; font-size: 15px !important; }
+            .match-list-column table td { 
+                height: 45px !important; 
+                font-size: 15px !important; 
+            }
+
+            /* 9人・10人の時だけ高さを広げる */
+            .page[data-n="9"] .match-list-column table th,
+            .page[data-n="9"] .match-list-column table td,
+            .page[data-n="10"] .match-list-column table th,
+            .page[data-n="10"] .match-list-column table td { 
+                height: 100px !important; /* ここを大きくすると縦に伸びます */
+            }
 
             .page[data-n="3"] table { width: 50% !important; }
             .page[data-n="4"] table { width: 60% !important; }
@@ -107,6 +125,17 @@
             .print-col-3 { min-width: 29% !important; }
             .print-col-3 .match-num-col { width: 22px; }
         }
+      /* 9人の場合 */
+.page[data-n="9"] .print-col-3 { 
+    min-width: 30% !important; 
+    font-size: 13px !important; /* 文字サイズも少し小さくすると収まりが良いです */
+}
+
+/* 10人の場合 */
+.page[data-n="10"] .print-col-3 { 
+    min-width: 31% !important; 
+    font-size: 12px !important; 
+}
     </style>
 </head>
 <body>
