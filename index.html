@@ -40,6 +40,13 @@
         .match-list-container { display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; }
         .match-list-column { flex: 1; min-width: 100%; }
 
+        /* 画面表示時の対戦リストの調整（画面のみ適用） */
+        .match-list-column table th,
+        .match-list-column table td {
+            font-size: 13px !important;
+            height: 38px !important;
+        }
+
         .print-only { display: none; }
 
         @media print {
@@ -60,7 +67,6 @@
                 border-top: 1px solid #333;
             }
 
-            /* 共通のセル設定（ここはそのまま） */
             .page table th,
             .page table td {
                 border: 0 !important;
@@ -69,8 +75,6 @@
                 height: 45px !important;
             }
 
-            /* --- ここから追記する内容 --- */
-            /* 9人・10人の時だけ高さを 35px に縮める */
             .page[data-n="9"] table th,
             .page[data-n="9"] table td,
             .page[data-n="10"] table th,
@@ -78,19 +82,17 @@
                 height: 35px !important;
             }
 
-            /* 共通の高さ（デフォルト） */
             .match-list-column table th,
             .match-list-column table td { 
                 height: 45px !important; 
                 font-size: 15px !important; 
             }
 
-            /* 9人・10人の時だけ高さを広げる */
             .page[data-n="9"] .match-list-column table th,
             .page[data-n="9"] .match-list-column table td,
             .page[data-n="10"] .match-list-column table th,
             .page[data-n="10"] .match-list-column table td { 
-                height: 100px !important; /* ここを大きくすると縦に伸びます */
+                height: 100px !important;
             }
 
             .page[data-n="3"] table { width: 50% !important; }
@@ -125,17 +127,9 @@
             .print-col-3 { min-width: 29% !important; }
             .print-col-3 .match-num-col { width: 22px; }
         }
-      /* 9人の場合 */
-.page[data-n="9"] .print-col-3 { 
-    min-width: 30% !important; 
-    font-size: 13px !important; /* 文字サイズも少し小さくすると収まりが良いです */
-}
-
-/* 10人の場合 */
-.page[data-n="10"] .print-col-3 { 
-    min-width: 31% !important; 
-    font-size: 12px !important; 
-}
+        
+        .page[data-n="9"] .print-col-3 { min-width: 30% !important; font-size: 13px !important; }
+        .page[data-n="10"] .print-col-3 { min-width: 31% !important; font-size: 12px !important; }
     </style>
 </head>
 <body>
@@ -187,8 +181,8 @@
             else if (n >= 9) printCols = 3;
 
             let html = `<div class="page" data-n="${n}">` +
-                       `<div class="section-header"><h2 class="section-title">対戦表（${n}人）</h2><div class="date-display">${dateStr}</div></div>` +
-                       `<table><tr><th></th>`;
+                        `<div class="section-header"><h2 class="section-title">対戦表（${n}人）</h2><div class="date-display">${dateStr}</div></div>` +
+                        `<table><tr><th></th>`;
             names.forEach(name => html += `<th class="name-header">${name}</th>`);
             html += `<th class="print-only">勝</th><th class="print-only">負</th><th class="print-only">分</th><th class="print-only">順位</th></tr>`;
 
