@@ -69,7 +69,7 @@
             .page { page-break-after: always; margin-bottom: 0; }
             .page:last-child { page-break-after: avoid; }
 
-            .match-num { color: #666 !important; font-size: 7px !important; top: 4px; left: 4px; }
+            .match-num { color: #666 !important; font-size: 7px !important; top: 4px; left: 5px; }
 
             .page table th { background-color: #eee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
@@ -217,7 +217,7 @@
 
             // 対戦表のHTML構造の組み立てを開始
             let html = `<div class="page" data-n="${n}">` +
-                        `<div class="section-header"><h2 class="section-title">対戦表（${n}人）</h2><div class="date-display">${dateStr}</div></div>` +
+                        `<div class="section-header"><h2 class="section-title">対戦表（${n}人・${matches.length}試合）</h2><div class="date-display">${dateStr}</div></div>` +
                         `<table><tr><th></th>`;
             names.forEach(name => html += `<th class="name-header">${name}</th>`);
             html += `<th class="print-only">勝</th><th class="print-only">負</th><th class="print-only">分</th><th class="print-only">順位</th></tr>`;
